@@ -18,13 +18,19 @@ const app = express()
 // app.method("/url", (req, res) => {})
 // req = request object (details about the request)
 // res = response object (has function for sending response)
-app.get("/greeting", (req, res) => {
-    // res.send("HOWDY STRANGER");
-    console.log(req.query)
-    const name = req.query.name;
-    res.send(`Oh, hey there ${name}, didn't see you there... this is awkward`)
-})
+// app.get("/greeting", (req, res) => {
+//     // res.send("HOWDY STRANGER");
+//     console.log(req.query)
+//     const name = req.query.name;
+//     res.send(`Oh, hey there ${name}, didn't see you there... this is awkward`)
+// })
 
+app.get("/tip/:total/:tipPercentage", (req, res) => {
+    const total = req.params.total
+    const tipPercentage = req.params.tipPercentage
+    const tipAmount = ((tipPercentage/total)*100)
+    res.send(`Your total is $${total}, and the tip percentage is ${tipPercentage}%, therfore you should tip $${tipAmount}`)
+})
 
 ///////////////////////////
 // Server Listener/ TURN ON SERVER/ ALWAYS THE LAST THING
